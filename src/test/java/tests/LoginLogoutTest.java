@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -7,6 +8,7 @@ import pages.LoginPage;
 public class LoginLogoutTest extends BaseTest{
 
     @Test
+    @Description("Successful login")
     public void loginTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean userGreeting = loginPage.openLoginPage()
@@ -18,6 +20,7 @@ public class LoginLogoutTest extends BaseTest{
     }
 
     @Test
+    @Description("Successful logout")
     public void logoutTest() {
         LoginPage loginPage = new LoginPage(driver);
         String actualMessage = loginPage.openLoginPage()
@@ -31,6 +34,7 @@ public class LoginLogoutTest extends BaseTest{
     }
 
     @Test
+    @Description("Login failure - login and password input fields are left blank")
     public void loginWithoutNameAndPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openLoginPage().leaveLoginNameBlank().leavePasswordBlank().clickLoginButton();
