@@ -27,6 +27,56 @@ public class AddWorkoutPage extends BasePage{
     @FindBy(xpath = "//input[@id='PlannedWorkout']")
     private WebElement plannedWorkoutCheckbox;
 
+    @FindBy(xpath = "//input[@id='PDistance']")
+    private WebElement plannedDistanceInput;
+
+    @FindBy(xpath = "//input[@id='PDuration']")
+    private WebElement plannedDurationInput;
+
+    @FindBy(xpath = "//input[@id='Distance']")
+    private WebElement distanceInput;
+
+    @FindBy(xpath = "//input[@id='Duration']")
+    private WebElement durationInput;
+
+    @FindBy(xpath = "//input[@value='Add Workout']")
+    private WebElement addWorkoutButton;
+
+//    @FindBy(xpath = "//input[@id='hf_%s']")
+//    private WebElement howIFeltRadio;
+
+    @FindBy(xpath = "//input[@id='hf_great']")
+    private WebElement feltGreatRadio;
+
+    @FindBy(xpath = "//input[@id='hf_good']")
+    private WebElement feltGoodRadio;
+
+    @FindBy(xpath = "//input[@id='hf_normal']")
+    private WebElement feltNormalRadio;
+
+    @FindBy(xpath = "//input[@id='hf_poor']")
+    private WebElement feltPoorRadio;
+
+    @FindBy(xpath = "//input[@id='hf_terrible']")
+    private WebElement feltTerribleRadio;
+
+    @FindBy(xpath = "//input[@id='MinHR']")
+    private WebElement minHrInput;
+
+    @FindBy(xpath = "//input[@id='MaxHR']")
+    private WebElement maxHrInput;
+
+    @FindBy(xpath = "//input[@id='AvgHR']")
+    private WebElement avgHrInput;
+
+    @FindBy(xpath = "//input[@id='kCal']")
+    private WebElement caloriesBurnedInput;
+
+    @FindBy(xpath = "//ul[@id='breadcrumbs']//li//span[text()='View and Edit your workout.']")
+    private WebElement breadcrumbOnWorkoutSave;
+
+
+
     public AddWorkoutPage(WebDriver driver) {
         super(driver);
     }
@@ -35,28 +85,99 @@ public class AddWorkoutPage extends BasePage{
         return addWorkoutBreadcrumb.isDisplayed();
     }
 
-    public void selectWalkAccordionGroup() {
+    public AddWorkoutPage selectWalkAccordionGroup() {
         walkAccordionGroup.click();
+        return this;
     }
 
-    public void inputWorkoutDate(String date) {
+    public AddWorkoutPage inputWorkoutDate(String date) {
         dateInput.sendKeys(date);
+        return this;
     }
 
-    public void inputWorkoutTime(String time) {
+    public AddWorkoutPage inputWorkoutTime(String time) {
         timeOfDayInput.sendKeys(time);
+        return this;
     }
 
-    public void inputWorkoutName(String workoutName) {
+    public AddWorkoutPage inputWorkoutName(String workoutName) {
         workoutNameInput.sendKeys(workoutName);
+        return this;
     }
 
-    public void inputWorkoutDescription(String desc) {
+    public AddWorkoutPage inputWorkoutDescription(String desc) {
         workoutDescriptionTextarea.sendKeys(desc);
+        return this;
     }
 
-    public void checkPlannedWorkoutBox() {
+    public AddWorkoutPage checkPlannedWorkoutBox() {
         plannedWorkoutCheckbox.click();
+        return this;
+    }
+
+    public AddWorkoutPage inputPlannedDistance(String dist) {
+        plannedDistanceInput.sendKeys(dist);
+        return this;
+    }
+
+    public AddWorkoutPage inputPlannedDuration(String dur) {
+        plannedDurationInput.sendKeys(dur);
+        return this;
+    }
+
+    public AddWorkoutPage inputDistance(String dist) {
+        distanceInput.sendKeys(dist);
+        return this;
+    }
+
+    public AddWorkoutPage inputDuration(String dur) {
+        durationInput.sendKeys(dur);
+        return this;
+    }
+
+    // почему метод не работает? не может найти элемент после склеивания с условием
+//    public AddWorkoutPage selectHowIFeltRadio(String condition) {
+//        String finalXpath = String.format((howIFeltRadio.toString()), condition);
+//        driver.findElement(By.xpath(finalXpath)).click();
+//        return this;
+//    }
+
+    public AddWorkoutPage selectHowIFeltRadio(String condition) {
+        switch (condition) {
+            case "great": feltGreatRadio.click(); break;
+            case "good": feltGoodRadio.click(); break;
+            case "normal": feltNormalRadio.click(); break;
+            case "poor": feltPoorRadio.click(); break;
+            case "terrible": feltTerribleRadio.click(); break;
+        }
+        return this;
+    }
+
+    public AddWorkoutPage inputMinHR() {
+        int minHR = 60;
+        int maxHR = 70;
+        int num = (int) Math.floor(Math.random()*((maxHR - minHR + 1) + minHR));
+        String strNum = String.valueOf(num);
+        minHrInput.sendKeys(strNum);
+        return this;
+    }
+
+    public AddWorkoutPage inputMaxHR() {
+        int minHR = 90;
+        int maxHR = 100;
+        int num = (int) Math.floor(Math.random()*((maxHR - minHR + 1) + minHR));
+        String strNum = String.valueOf(num);
+        minHrInput.sendKeys(strNum);
+        return this;
+    }
+
+    public AddWorkoutPage saveFormData() {
+        addWorkoutButton.click();
+        return this;
+    }
+
+    public boolean workoutSaved() {
+        return breadcrumbOnWorkoutSave.isDisplayed();
     }
 
 

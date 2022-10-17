@@ -57,5 +57,14 @@ public class LoginPage extends BasePage{
         return passwordErrorMessage.getText();
     }
 
+    public HomePage login() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.openLoginPage()
+                .inputLoginName()
+                .inputPassword()
+                .clickLoginButton();
+        return new HomePage(driver);
+    }
+
 
 }
