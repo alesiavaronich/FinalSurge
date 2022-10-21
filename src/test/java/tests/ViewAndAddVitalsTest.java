@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
@@ -8,11 +9,13 @@ public class ViewAndAddVitalsTest extends BaseTest{
     @Test
     public void customizeActivityTypesTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.openLoginPage()
+        boolean isBreadcrumbDisplayed = loginPage.openLoginPage()
                 .inputLoginName()
                 .inputPassword()
                 .clickLoginButton()
                 .hoverOverDailyVitalsDropdown()
-                .selectViewAndAddVitalsOption();
+                .selectViewAndAddVitalsOption()
+                .isDailyVitalsBreadcrumbVisible();
+        Assert.assertTrue(isBreadcrumbDisplayed, "Breadcrumb is not visible.");
     }
 }

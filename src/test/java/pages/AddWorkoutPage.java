@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,9 +40,6 @@ public class AddWorkoutPage extends BasePage{
     @FindBy(xpath = "//input[@id='Duration']")
     private WebElement durationInput;
 
-    @FindBy(xpath = "//input[@value='Add Workout']")
-    private WebElement addWorkoutButton;
-
 //    @FindBy(xpath = "//input[@id='hf_%s']")
 //    private WebElement howIFeltRadio;
 
@@ -72,18 +70,14 @@ public class AddWorkoutPage extends BasePage{
     @FindBy(xpath = "//input[@id='kCal']")
     private WebElement caloriesBurnedInput;
 
-    @FindBy(xpath = "//ul[@id='breadcrumbs']//li//span[text()='View and Edit your workout.']")
-    private WebElement breadcrumbOnWorkoutSave;
-
+    @FindBy(xpath = "//input[@value='Add Workout']")
+    private WebElement addWorkoutButton;
 
 
     public AddWorkoutPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isAddWorkoutBreadcrumbVisible() {
-        return addWorkoutBreadcrumb.isDisplayed();
-    }
 
     public AddWorkoutPage selectWalkAccordionGroup() {
         walkAccordionGroup.click();
@@ -91,7 +85,8 @@ public class AddWorkoutPage extends BasePage{
     }
 
     public AddWorkoutPage inputWorkoutDate(String date) {
-        dateInput.sendKeys(date);
+        dateInput.clear();
+        dateInput.sendKeys(date,Keys.TAB);
         return this;
     }
 
@@ -153,32 +148,56 @@ public class AddWorkoutPage extends BasePage{
         return this;
     }
 
-    public AddWorkoutPage inputMinHR() {
-        int minHR = 60;
-        int maxHR = 70;
-        int num = (int) Math.floor(Math.random()*((maxHR - minHR + 1) + minHR));
-        String strNum = String.valueOf(num);
+    //Any calculations are ignored by the web-app. Only hardcoded values are accepted. Reporting a BUG.
+//    public AddWorkoutPage inputMinHR() {
+//        int minHR = 60;
+//        int maxHR = 90;
+//        Integer num = (int) Math.floor(Math.random()*(maxHR - minHR + 1) + minHR);
+//        minHrInput.sendKeys(String.format("%d",num));
+//        return this;
+//    }
+
+    //Any calculations are ignored by the web-app. Only hardcoded values are accepted. Reporting a BUG.
+//    public AddWorkoutPage inputMaxHR() {
+//        int minHR = 90;
+//        int maxHR = 150;
+//        Integer num = (int) Math.floor(Math.random()*(maxHR - minHR + 1) + minHR);
+//        minHrInput.sendKeys(Integer.toString(num));
+//        return this;
+//    }
+
+    //Any calculations are ignored by the web-app. Only hardcoded values are accepted. Reporting a BUG.
+//    public AddWorkoutPage inputMinHRSpecial() {
+//        minHrInput.sendKeys(FakeMessageGenerator.generateMinNum());
+//        return this;
+//    }
+
+    //Any calculations are ignored by the web-app. Only hardcoded values are accepted. Reporting a BUG.
+//    public AddWorkoutPage inputMaxHRSpecial() {
+//        minHrInput.sendKeys(FakeMessageGenerator.generateMaxNum());
+//        return this;
+//    }
+
+    public AddWorkoutPage inputMinHR(String strNum) {
         minHrInput.sendKeys(strNum);
         return this;
     }
 
-    public AddWorkoutPage inputMaxHR() {
-        int minHR = 90;
-        int maxHR = 100;
-        int num = (int) Math.floor(Math.random()*((maxHR - minHR + 1) + minHR));
-        String strNum = String.valueOf(num);
-        minHrInput.sendKeys(strNum);
+    public AddWorkoutPage inputMaxHR(String strNum) {
+        maxHrInput.sendKeys(strNum);
         return this;
     }
 
-    public AddWorkoutPage saveFormData() {
+    public boolean isAddWorkoutBreadcrumbVisible() {
+        return addWorkoutBreadcrumb.isDisplayed();
+    }
+
+    public WorkoutDetailsPage saveFormData() {
         addWorkoutButton.click();
-        return this;
+        return new WorkoutDetailsPage(driver);
     }
 
-    public boolean workoutSaved() {
-        return breadcrumbOnWorkoutSave.isDisplayed();
-    }
+
 
 
 }

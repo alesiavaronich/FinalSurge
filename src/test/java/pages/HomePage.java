@@ -52,6 +52,9 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//div[@id='fade-menu']//a[text()='Gear & Routes']//ancestor::li//ul//li//a[text()='Routes']")
     private WebElement routesOption;
 
+    @FindBy(xpath = "//nav[@class='nav-icons']//ul/li/a[@href='Calendar.cshtml']")
+    private WebElement calendarNavIcon;
+
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -77,8 +80,9 @@ public class HomePage extends BasePage{
         return new AddWorkoutPage(driver);
     }
 
-    public void selectViewCalendarOption() {
+    public CalendarPage selectViewCalendarOption() {
         viewCalendarOption.click();
+        return new CalendarPage(driver);
     }
 
     public void selectReportsAndStatisticsOption() {
@@ -103,8 +107,9 @@ public class HomePage extends BasePage{
         return this;
     }
 
-    public void selectViewAndAddVitalsOption() {
+    public DailyVitalsPage selectViewAndAddVitalsOption() {
         viewAndAddVitalsOption.click();
+        return new DailyVitalsPage(driver);
     }
 
     public HomePage hoverOverGearAndRoutesDropdown() {
@@ -123,6 +128,11 @@ public class HomePage extends BasePage{
 
     public void selectRoutesOption() {
         routesOption.click();
+    }
+
+    public CalendarPage clickCalendarNavIcon() {
+        calendarNavIcon.click();
+        return new CalendarPage(driver);
     }
 
 
