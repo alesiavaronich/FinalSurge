@@ -2,7 +2,7 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.LoginPage;
+import pagesAndComponents.LoginPage;
 
 public class ViewAndAddVitalsTest extends BaseTest{
 

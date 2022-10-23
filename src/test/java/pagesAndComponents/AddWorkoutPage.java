@@ -1,4 +1,4 @@
-package pages;
+package pagesAndComponents;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -73,6 +73,15 @@ public class AddWorkoutPage extends BasePage{
     @FindBy(xpath = "//input[@value='Add Workout']")
     private WebElement addWorkoutButton;
 
+    @FindBy(xpath = "//div[contains(@class,'alert alert-error') and contains(.,'Please enter a value for Workout Date')]")
+    private WebElement errorMessageMissingWorkoutDate;
+
+    @FindBy(xpath = "//div[contains(@class,'alert alert-error') and contains(.,'Please enter a valid Pace')]")
+    private WebElement errorMessageInvalidPace;
+
+    @FindBy(xpath = "//div[contains(@class,'alert alert-error') and contains(.,'Minimum Heartrate cannot be greater than 300.')]")
+    private WebElement errorMessageInvalidHeartRate;
+
 
     public AddWorkoutPage(WebDriver driver) {
         super(driver);
@@ -81,6 +90,11 @@ public class AddWorkoutPage extends BasePage{
 
     public AddWorkoutPage selectWalkAccordionGroup() {
         walkAccordionGroup.click();
+        return this;
+    }
+
+    public AddWorkoutPage clearDateInput() {
+        dateInput.clear();
         return this;
     }
 
@@ -192,12 +206,39 @@ public class AddWorkoutPage extends BasePage{
         return addWorkoutBreadcrumb.isDisplayed();
     }
 
-    public WorkoutDetailsPage saveFormData() {
+    public WorkoutDetailsPage saveFormDataSuccess() {
         addWorkoutButton.click();
         return new WorkoutDetailsPage(driver);
     }
 
+    public AddWorkoutPage saveFormDataFailure() {
+        addWorkoutButton.click();
+        return this;
+    }
 
+    public boolean isWorkoutDateErrorMessageDisplayed() {
+        return errorMessageMissingWorkoutDate.isDisplayed();
+    }
+
+    public String  getWorkoutDateErrorMessage() {
+        return errorMessageMissingWorkoutDate.getText();
+    }
+
+    public boolean isInvalidPaceErrorMessageDisplayed() {
+        return errorMessageInvalidPace.isDisplayed();
+    }
+
+    public String getInvalidPaceErrorMessage() {
+        return errorMessageInvalidPace.getText();
+    }
+
+    public boolean isHeartrateErrorMessageDisplayed() {
+        return errorMessageInvalidHeartRate.isDisplayed();
+    }
+
+    public String getHeartrateErrorMessage() {
+        return errorMessageInvalidHeartRate.getText();
+    }
 
 
 }

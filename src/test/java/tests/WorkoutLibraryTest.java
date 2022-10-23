@@ -1,7 +1,7 @@
 package tests;
 
 import org.testng.annotations.Test;
-import pages.LoginPage;
+import pagesAndComponents.LoginPage;
 
 public class WorkoutLibraryTest extends BaseTest{
 

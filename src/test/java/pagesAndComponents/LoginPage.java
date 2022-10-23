@@ -1,4 +1,4 @@
-package pages;
+package pagesAndComponents;
 
 import constants.Credentials;
 import constants.Urls;

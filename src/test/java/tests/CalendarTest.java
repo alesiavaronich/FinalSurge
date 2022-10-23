@@ -2,8 +2,8 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.CalendarPage;
-import pages.LoginPage;
+import pagesAndComponents.CalendarPage;
+import pagesAndComponents.LoginPage;
 
 public class CalendarTest extends BaseTest{
 
