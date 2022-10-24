@@ -1,5 +1,6 @@
 package pagesAndComponents;
 
+import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,16 +11,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.LocalDate;
 import java.util.Locale;
 
+@Log4j
 public class CalendarPage extends BasePage{
 
 
-    private String dateOfActivity = "//div[@data-date='%s']";
-
-    @FindBy(xpath = "//ul[@role='menu']/li/a[@class='quick-delete']")
-    private WebElement quickDeleteOption;
-
-    @FindBy(xpath = "//ul[@role='menu']/li/a[@class='full-edit']")
-    private WebElement updateWorkoutOption;
+    private String activityByDate = "//div[@data-date='%s'][1]";
+    private String updateWorkoutOption = "//div[@data-date='%s'][1]//a[text()='Update Workout']";
+    private String quickDeleteOption = "//div[@data-date='%s'][1]//a[text()='Delete']";
 
     @FindBy(xpath = "//div[@class='bootbox modal fade in']//div[@class='modal-footer']/a[text()='OK']")
     private WebElement falseAlert;
@@ -33,7 +31,7 @@ public class CalendarPage extends BasePage{
     }
 
     public CalendarPage selectActivity(String date) {
-        String finalXpath = String.format(dateOfActivity, date);
+        String finalXpath = String.format(activityByDate, date);
         driver.findElement(By.xpath(finalXpath)).click();
         return this;
     }
@@ -43,13 +41,15 @@ public class CalendarPage extends BasePage{
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public CalendarPage selectQuickDeleteOption() {
-        quickDeleteOption.click();
+    public CalendarPage selectQuickDeleteOption(String date) {
+        String finalXpath = String.format(quickDeleteOption, date);
+        driver.findElement(By.xpath(finalXpath)).click();
         return this;
     }
 
-    public UpdateWorkoutPage selectUpdateWorkoutOption() {
-        updateWorkoutOption.click();
+    public UpdateWorkoutPage selectUpdateWorkoutOption(String date) {
+        String finalXpath = String.format(updateWorkoutOption, date);
+        driver.findElement(By.xpath(finalXpath)).click();
         return new UpdateWorkoutPage(driver);
     }
 
@@ -72,7 +72,10 @@ public class CalendarPage extends BasePage{
         return currentMonth.concat(" ").concat(currentYear);
     }
 
-
+    public CalendarPage refreshPage() {
+        driver.navigate().refresh();
+        return new CalendarPage(driver);
+    }
 
 
 }

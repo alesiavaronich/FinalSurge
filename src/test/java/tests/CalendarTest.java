@@ -1,10 +1,12 @@
 package tests;
 
+import lombok.extern.log4j.Log4j;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pagesAndComponents.CalendarPage;
 import pagesAndComponents.LoginPage;
 
+@Log4j
 public class CalendarTest extends BaseTest{
 
     @Test

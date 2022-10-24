@@ -1,10 +1,12 @@
 package pagesAndComponents;
 
+import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
+@Log4j
 public abstract class BasePage {
 
     public WebDriver driver;

@@ -1,10 +1,12 @@
 package tests;
 
+import lombok.extern.log4j.Log4j;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagesAndComponents.HomePage;
+import pagesAndComponents.TopNavComponent;
 import pagesAndComponents.LoginPage;
 
+@Log4j
 public class AddWorkoutTest extends BaseTest {
 
     @Test
@@ -139,10 +141,11 @@ public class AddWorkoutTest extends BaseTest {
                 .inputWorkoutDate("10/23/2022")
                 .saveFormDataSuccess();
         //Test - access calendar, access saved activity via update menu option, then cancel update
-        HomePage homePage = new HomePage(driver);
-        homePage.clickCalendarNavIcon()
+        TopNavComponent topNavComponent = new TopNavComponent(driver);
+        topNavComponent.clickCalendarNavIcon()
+                .refreshPage()
                 .selectActivity("10/23/2022")
-                .selectUpdateWorkoutOption()
+                .selectUpdateWorkoutOption("10/23/2022")
                 .cancelUpdate();
     }
 
@@ -154,13 +157,13 @@ public class AddWorkoutTest extends BaseTest {
                 .hoverOverWorkoutsDropdown()
                 .selectAddWorkoutOption()
                 .selectWalkAccordionGroup()
-                .inputWorkoutDate("10/23/2022")
+                .inputWorkoutDate("10/21/2022")
                 .saveFormDataSuccess();
         //Test - access calendar, access saved activity via update menu option, then update selected fields
-        HomePage homePage = new HomePage(driver);
-        homePage.clickCalendarNavIcon()
-                .selectActivity("10/23/2022")
-                .selectUpdateWorkoutOption()
+        TopNavComponent topNavComponent = new TopNavComponent(driver);
+        topNavComponent.clickCalendarNavIcon()
+                .selectActivity("10/21/2022")
+                .selectUpdateWorkoutOption("10/21/2022")
                 .inputDistance("3.2")
                 .inputDuration("01:02:45")
                 .updateFormData();
@@ -177,10 +180,10 @@ public class AddWorkoutTest extends BaseTest {
                 .inputWorkoutDate("10/23/2022")
                 .saveFormDataSuccess();
         //Test - access activity via calendar, then delete activity
-        HomePage homePage = new HomePage(driver);
-        homePage.clickCalendarNavIcon()
-                .selectActivity("10/13/2022")
-                .selectQuickDeleteOption()
+        TopNavComponent topNavComponent = new TopNavComponent(driver);
+        topNavComponent.clickCalendarNavIcon()
+                .selectActivity("10/23/2022")
+                .selectQuickDeleteOption("10/23/2022")
                 .acceptFalseAlert();
 
     }

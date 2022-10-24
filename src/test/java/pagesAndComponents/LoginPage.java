@@ -2,10 +2,12 @@ package pagesAndComponents;
 
 import constants.Credentials;
 import constants.Urls;
+import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Log4j
 public class LoginPage extends BasePage{
 
     @FindBy(id = "login_name") private WebElement loginNameInput;
@@ -44,9 +46,9 @@ public class LoginPage extends BasePage{
         return this;
     }
 
-    public HomePage clickLoginButton() {
+    public TopNavComponent clickLoginButton() {
         loginButton.click();
-        return new HomePage(driver);
+        return new TopNavComponent(driver);
     }
 
     public String getLoginNameErrorText() {
@@ -57,13 +59,13 @@ public class LoginPage extends BasePage{
         return passwordErrorMessage.getText();
     }
 
-    public HomePage login() {
+    public TopNavComponent login() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openLoginPage()
                 .inputLoginName()
                 .inputPassword()
                 .clickLoginButton();
-        return new HomePage(driver);
+        return new TopNavComponent(driver);
     }
 
 
