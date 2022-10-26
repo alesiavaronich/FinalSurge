@@ -1,10 +1,13 @@
 package tests;
 
 import lombok.extern.log4j.Log4j;
+import models.NewWorkoutModel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagesAndComponents.TopNavComponent;
+import pagesAndComponents.AddWorkoutPage;
 import pagesAndComponents.LoginPage;
+import pagesAndComponents.TopNavComponent;
+import testdata.PrepareNewWorkoutData;
 
 @Log4j
 public class AddWorkoutTest extends BaseTest {
@@ -20,6 +23,20 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test
+    public void addNewWorkoutWithModelTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        AddWorkoutPage addWorkoutPage = loginPage.login()
+                .hoverOverWorkoutsDropdown()
+                .selectAddWorkoutOption()
+                .selectWalkAccordionGroup();
+        NewWorkoutModel newWorkoutModel = PrepareNewWorkoutData.getValidData();
+        boolean isBreadcrumbOnSaveDisplayed = addWorkoutPage
+                .sendAddWorkoutForm(newWorkoutModel)
+                .isWorkoutDetailsBreadcrumbVisible();
+        Assert.assertTrue(isBreadcrumbOnSaveDisplayed, " 'Workout Details' breadcrumb is not visible");
+    }
+
+    @Test
     public void addNewWorkoutTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isBreadcrumbOnSaveDisplayed = loginPage.login()
@@ -30,9 +47,6 @@ public class AddWorkoutTest extends BaseTest {
                 .inputWorkoutTime("07:00 AM")
                 .inputWorkoutName("Morning walk")
                 .inputWorkoutDescription("Walking every morning at 7 am")
-                .checkPlannedWorkoutBox()
-                .inputPlannedDistance("2")
-                .inputPlannedDuration("00:40:00")
                 .inputDistance("2.5")
                 .inputDuration("00:51:16")
                 .selectHowIFeltRadio("good")

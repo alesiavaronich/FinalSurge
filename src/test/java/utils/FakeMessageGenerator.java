@@ -6,15 +6,19 @@ import java.text.SimpleDateFormat;
 
 public class FakeMessageGenerator {
 
-    public static String generateBirthDate() {
+    public static String generateDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         Faker faker = new Faker();
         String dob = sdf.format(faker.date().birthday());
         return dob;
     }
 
-    public static String generateWebsiteUrl() {
-        return new Faker().internet().url();
+    public static String generateWorkoutDescription() {
+        return new Faker().lorem().sentence();
+    }
+
+    public static String generateDistance() {
+        return String.valueOf(new Faker().number().numberBetween(1, 5));
     }
 
     public static String generateMinNum() {
@@ -28,5 +32,21 @@ public class FakeMessageGenerator {
 
     public static String generateMaxNum() {
         return String.valueOf(new Faker().number().numberBetween(90, 200));
+    }
+
+    public static String generateFirstName() {
+        return new Faker().name().firstName();
+    }
+
+    public static String generateLastName() {
+        return new Faker().name().lastName();
+    }
+
+    public static String generateCity() {
+        return new Faker().address().city();
+    }
+
+    public static String generateZip() {
+        return new Faker().address().zipCode();
     }
 }

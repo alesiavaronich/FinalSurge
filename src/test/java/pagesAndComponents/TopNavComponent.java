@@ -57,6 +57,9 @@ public class TopNavComponent extends BasePage{
     @FindBy(xpath = "//nav[@class='nav-icons']//ul/li/a[@href='Calendar.cshtml']")
     private WebElement calendarNavIcon;
 
+    @FindBy(xpath = "//div[@class='user-info']//ul//li//a[text()='Settings']")
+    private WebElement settingsLink;
+
 
     public TopNavComponent(WebDriver driver) {
         super(driver);
@@ -142,6 +145,11 @@ public class TopNavComponent extends BasePage{
     public CalendarPage clickCalendarNavIcon() {
         calendarNavIcon.click();
         return new CalendarPage(driver);
+    }
+
+    public UserProfilePage clickSettingsLink() {
+        settingsLink.click();
+        return new UserProfilePage(driver);
     }
 
 

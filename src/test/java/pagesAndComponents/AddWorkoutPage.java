@@ -1,6 +1,7 @@
 package pagesAndComponents;
 
 import lombok.extern.log4j.Log4j;
+import models.NewWorkoutModel;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -240,6 +241,20 @@ public class AddWorkoutPage extends BasePage{
 
     public String getHeartrateErrorMessage() {
         return errorMessageInvalidHeartRate.getText();
+    }
+
+    public WorkoutDetailsPage sendAddWorkoutForm(NewWorkoutModel newWorkoutModel) {
+        dateInput.clear();
+        dateInput.sendKeys(newWorkoutModel.getDate());
+        timeOfDayInput.sendKeys(newWorkoutModel.getTimeOfDay());
+        workoutNameInput.sendKeys(newWorkoutModel.getWorkoutName());
+        workoutDescriptionTextarea.sendKeys(newWorkoutModel.getWorkoutDescription());
+        distanceInput.sendKeys(newWorkoutModel.getDistance());
+        durationInput.sendKeys(newWorkoutModel.getDuration());
+        minHrInput.sendKeys(newWorkoutModel.getMinHr());
+        maxHrInput.sendKeys(newWorkoutModel.getMaxHr());
+        addWorkoutButton.click();
+        return new WorkoutDetailsPage(driver);
     }
 
 
