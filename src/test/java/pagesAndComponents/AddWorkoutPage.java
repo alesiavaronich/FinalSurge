@@ -165,36 +165,6 @@ public class AddWorkoutPage extends BasePage{
         return this;
     }
 
-    //Any calculations are ignored by the web-app. Only hardcoded values are accepted. Reporting a BUG.
-//    public AddWorkoutPage inputMinHR() {
-//        int minHR = 60;
-//        int maxHR = 90;
-//        Integer num = (int) Math.floor(Math.random()*(maxHR - minHR + 1) + minHR);
-//        minHrInput.sendKeys(String.format("%d",num));
-//        return this;
-//    }
-
-    //Any calculations are ignored by the web-app. Only hardcoded values are accepted. Reporting a BUG.
-//    public AddWorkoutPage inputMaxHR() {
-//        int minHR = 90;
-//        int maxHR = 150;
-//        Integer num = (int) Math.floor(Math.random()*(maxHR - minHR + 1) + minHR);
-//        minHrInput.sendKeys(Integer.toString(num));
-//        return this;
-//    }
-
-    //Any calculations are ignored by the web-app. Only hardcoded values are accepted. Reporting a BUG.
-//    public AddWorkoutPage inputMinHRSpecial() {
-//        minHrInput.sendKeys(FakeMessageGenerator.generateMinNum());
-//        return this;
-//    }
-
-    //Any calculations are ignored by the web-app. Only hardcoded values are accepted. Reporting a BUG.
-//    public AddWorkoutPage inputMaxHRSpecial() {
-//        minHrInput.sendKeys(FakeMessageGenerator.generateMaxNum());
-//        return this;
-//    }
-
     public AddWorkoutPage inputMinHR(String strNum) {
         minHrInput.sendKeys(strNum);
         return this;

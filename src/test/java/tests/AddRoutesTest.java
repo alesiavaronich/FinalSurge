@@ -1,5 +1,9 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,12 +14,12 @@ import utils.RetryAnalyzer;
 public class AddRoutesTest extends BaseTest{
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
-    public void addRoutesTest() {
+    @Description("Access 'Routes' page")
+    @Severity(SeverityLevel.NORMAL)
+    @Step("Access 'Routes' page")
+    public void accessRoutesPageTest() {
         LoginPage loginPage = new LoginPage(driver);
-        boolean isBreadcrumbVisible = loginPage.openLoginPage()
-                .inputLoginName()
-                .inputPassword()
-                .clickLoginButton()
+        boolean isBreadcrumbVisible = loginPage.login()
                 .hoverOverGearAndRoutesDropdown()
                 .selectRoutesOption()
                 .isRoutesBreadcrumbVisible();

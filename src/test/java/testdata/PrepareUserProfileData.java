@@ -16,7 +16,7 @@ public class PrepareUserProfileData {
                 .builder()
                 .firstName(firstName)
                 .lastName(lastName)
-                .birthday(FakeMessageGenerator.generateDate())
+                .birthday(FakeMessageGenerator.generateBirthDate())
                 .city(FakeMessageGenerator.generateCity())
                 .zip(FakeMessageGenerator.generateZip())
                 .build();

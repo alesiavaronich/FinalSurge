@@ -3,14 +3,23 @@ package utils;
 import com.github.javafaker.Faker;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class FakeMessageGenerator {
 
-    public static String generateDate() {
+    public static String generateBirthDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         Faker faker = new Faker();
         String dob = sdf.format(faker.date().birthday());
         return dob;
+    }
+
+    public static String generateCurrentDate() {
+        LocalDate currentDate = LocalDate.now();
+        String currentMonth = String.valueOf(currentDate.getMonthValue());
+        String currentDay = String.valueOf(currentDate.getDayOfMonth());
+        String currentYear = String.valueOf(currentDate.getYear());
+        return currentMonth.concat("/").concat(currentDay).concat("/").concat(currentYear);
     }
 
     public static String generateWorkoutDescription() {

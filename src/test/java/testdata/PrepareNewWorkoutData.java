@@ -11,7 +11,7 @@ public class PrepareNewWorkoutData {
         log.info("getValidData method starts generating test data to populate New Walk Workout form");
         return NewWorkoutModel
                 .builder()
-                .date("10/30/2022")
+                .date(FakeMessageGenerator.generateCurrentDate())
                 .timeOfDay("07:00 AM")
                 .workoutName("My workout")
                 .workoutDescription(FakeMessageGenerator.generateWorkoutDescription())

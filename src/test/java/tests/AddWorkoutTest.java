@@ -1,5 +1,9 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j;
 import models.NewWorkoutModel;
 import org.testng.Assert;
@@ -14,6 +18,9 @@ import utils.RetryAnalyzer;
 public class AddWorkoutTest extends BaseTest {
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Access 'Add Workout' page.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Step("Accessing workouts page")
     public void accessAddWorkoutPageTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isBreadcrumbVisible = loginPage.login()
@@ -24,6 +31,9 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Add new walk workout using a model and randomly generated test data.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Step("Adding new workout")
     public void addNewWorkoutWithModelTest() {
         LoginPage loginPage = new LoginPage(driver);
         AddWorkoutPage addWorkoutPage = loginPage.login()
@@ -34,31 +44,13 @@ public class AddWorkoutTest extends BaseTest {
         boolean isBreadcrumbOnSaveDisplayed = addWorkoutPage
                 .sendAddWorkoutForm(newWorkoutModel)
                 .isWorkoutDetailsBreadcrumbVisible();
-        Assert.assertTrue(isBreadcrumbOnSaveDisplayed, " 'Workout Details' breadcrumb is not visible");
+        Assert.assertTrue(isBreadcrumbOnSaveDisplayed, " 'Workout Details' breadcrumb is not visible.");
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
-    public void addNewWorkoutTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        boolean isBreadcrumbOnSaveDisplayed = loginPage.login()
-                .hoverOverWorkoutsDropdown()
-                .selectAddWorkoutOption()
-                .selectWalkAccordionGroup()
-                .inputWorkoutDate("10/13/2022")
-                .inputWorkoutTime("07:00 AM")
-                .inputWorkoutName("Morning walk")
-                .inputWorkoutDescription("Walking every morning at 7 am")
-                .inputDistance("2.5")
-                .inputDuration("00:51:16")
-                .selectHowIFeltRadio("good")
-                .inputMinHR("65")
-                .inputMaxHR("150")
-                .saveFormDataSuccess()
-                .isWorkoutDetailsBreadcrumbVisible();
-        Assert.assertTrue(isBreadcrumbOnSaveDisplayed, " 'Workout Details' breadcrumb is not visible");
-    }
-
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Attempt to save a workout with date missing. Expecting an error message to appear.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Step("Adding new workout")
     public void isWorkoutDateMissingErrorDisplayedTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isErrorDisplayed = loginPage.login()
@@ -72,6 +64,9 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Attempt to save a workout with date missing. Validating an error message.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Step("Adding new workout")
     public void validateWorkoutDateMissingErrorTextTest() {
         LoginPage loginPage = new LoginPage(driver);
         String actualErrorText = loginPage.login()
@@ -86,6 +81,11 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Attempt to save a workout with invalid pace: " +
+            "calculated automatically, based on distance and duration." +
+            "Expecting an error message to appear.")
+    @Severity(SeverityLevel.NORMAL)
+    @Step("Adding new workout")
     public void isInvalidPaceErrorDisplayedTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isErrorDisplayed = loginPage.login()
@@ -101,6 +101,11 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Attempt to save a workout with invalid pace: " +
+            "calculated automatically, based on distance and duration." +
+            "Validating an error message.")
+    @Severity(SeverityLevel.NORMAL)
+    @Step("Adding new workout")
     public void validatePaceErrorTextTest() {
         LoginPage loginPage = new LoginPage(driver);
         String actualErrorText = loginPage.login()
@@ -117,6 +122,9 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Attempt to save a workout with invalid heartrate. Max value for minHR is 300. Expecting an error message to appear.")
+    @Severity(SeverityLevel.NORMAL)
+    @Step("Adding new workout")
     public void isInvalidHeartrateErrorDisplayedTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isErrorDisplayed = loginPage.login()
@@ -131,6 +139,9 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Attempt to save a workout with invalid heartrate. Max value for minHR is 300. Validating an error message.")
+    @Severity(SeverityLevel.NORMAL)
+    @Step("Adding new workout")
     public void validateHeartrateErrorTextTest() {
         LoginPage loginPage = new LoginPage(driver);
         String actualErrorText = loginPage.login()
@@ -146,8 +157,12 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Save a new walk workout, then access it via Calendar, attempt to update, then cancel update.")
+    @Severity(SeverityLevel.NORMAL)
+    @Step("Updating new workout")
     public void cancelUpdateTest() {
-        //Precondition - login and add a new workout
+        log.info("Precondition - login and add a new workout");
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login()
                 .hoverOverWorkoutsDropdown()
@@ -155,7 +170,9 @@ public class AddWorkoutTest extends BaseTest {
                 .selectWalkAccordionGroup()
                 .inputWorkoutDate("10/23/2022")
                 .saveFormDataSuccess();
-        //Test - access calendar, access saved activity via update menu option, then cancel update
+
+        log.info("Test - access calendar, access saved activity via update menu option, then cancel update");
+
         TopNavComponent topNavComponent = new TopNavComponent(driver);
         topNavComponent.clickCalendarNavIcon()
                 .refreshPage()
@@ -165,8 +182,12 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Save a new walk workout, then access it via Calendar and update distance and duration.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Step("Updating new workout")
     public void updateWorkoutTest() {
-        //Precondition - login and add a new workout
+        log.info("Precondition - login and add a new workout");
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login()
                 .hoverOverWorkoutsDropdown()
@@ -174,7 +195,9 @@ public class AddWorkoutTest extends BaseTest {
                 .selectWalkAccordionGroup()
                 .inputWorkoutDate("10/21/2022")
                 .saveFormDataSuccess();
-        //Test - access calendar, access saved activity via update menu option, then update selected fields
+
+        log.info("Test - access calendar, access saved activity via update menu option, then update selected fields");
+
         TopNavComponent topNavComponent = new TopNavComponent(driver);
         topNavComponent.clickCalendarNavIcon()
                 .selectActivity("10/21/2022")
@@ -185,8 +208,12 @@ public class AddWorkoutTest extends BaseTest {
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Description("Save a walk workout, then delete it by accessing it via Calendar.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Step("Deleting new workout")
     public void deleteWorkoutTest() {
-        //Precondition - login and add a new workout
+        log.info("Precondition - login and add a new workout");
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login()
                 .hoverOverWorkoutsDropdown()
@@ -194,7 +221,9 @@ public class AddWorkoutTest extends BaseTest {
                 .selectWalkAccordionGroup()
                 .inputWorkoutDate("10/23/2022")
                 .saveFormDataSuccess();
-        //Test - access activity via calendar, then delete activity
+
+        log.info("Test - access activity via calendar, then delete activity");
+
         TopNavComponent topNavComponent = new TopNavComponent(driver);
         topNavComponent.clickCalendarNavIcon()
                 .selectActivity("10/23/2022")
