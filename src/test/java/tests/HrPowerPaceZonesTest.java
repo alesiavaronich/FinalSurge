@@ -9,7 +9,7 @@ import pagesAndComponents.LoginPage;
 public class HrPowerPaceZonesTest extends BaseTest{
 
     @Test
-    public void workoutLibraryTest() {
+    public void activityZonesTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isBreadcrumbVisible = loginPage.openLoginPage()
                 .inputLoginName()
