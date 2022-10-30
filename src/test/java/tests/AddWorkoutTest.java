@@ -8,11 +8,12 @@ import pagesAndComponents.AddWorkoutPage;
 import pagesAndComponents.LoginPage;
 import pagesAndComponents.TopNavComponent;
 import testdata.PrepareNewWorkoutData;
+import utils.RetryAnalyzer;
 
 @Log4j
 public class AddWorkoutTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void accessAddWorkoutPageTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isBreadcrumbVisible = loginPage.login()
@@ -22,7 +23,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertTrue(isBreadcrumbVisible, " 'Add Workout' breadcrumb is not visible.");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void addNewWorkoutWithModelTest() {
         LoginPage loginPage = new LoginPage(driver);
         AddWorkoutPage addWorkoutPage = loginPage.login()
@@ -36,7 +37,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertTrue(isBreadcrumbOnSaveDisplayed, " 'Workout Details' breadcrumb is not visible");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void addNewWorkoutTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isBreadcrumbOnSaveDisplayed = loginPage.login()
@@ -57,7 +58,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertTrue(isBreadcrumbOnSaveDisplayed, " 'Workout Details' breadcrumb is not visible");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void isWorkoutDateMissingErrorDisplayedTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isErrorDisplayed = loginPage.login()
@@ -70,7 +71,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertTrue(isErrorDisplayed, "Incorrect or missing error message.");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void validateWorkoutDateMissingErrorTextTest() {
         LoginPage loginPage = new LoginPage(driver);
         String actualErrorText = loginPage.login()
@@ -84,7 +85,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertEquals(actualErrorText, expectedErrorText);
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void isInvalidPaceErrorDisplayedTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isErrorDisplayed = loginPage.login()
@@ -99,7 +100,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertTrue(isErrorDisplayed, "Incorrect or missing error message.");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void validatePaceErrorTextTest() {
         LoginPage loginPage = new LoginPage(driver);
         String actualErrorText = loginPage.login()
@@ -115,7 +116,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertEquals(actualErrorText, expectedErrorText);
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void isInvalidHeartrateErrorDisplayedTest() {
         LoginPage loginPage = new LoginPage(driver);
         boolean isErrorDisplayed = loginPage.login()
@@ -129,7 +130,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertTrue(isErrorDisplayed, "Incorrect or missing error message.");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void validateHeartrateErrorTextTest() {
         LoginPage loginPage = new LoginPage(driver);
         String actualErrorText = loginPage.login()
@@ -144,7 +145,7 @@ public class AddWorkoutTest extends BaseTest {
         Assert.assertEquals(actualErrorText, expectedErrorText);
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void cancelUpdateTest() {
         //Precondition - login and add a new workout
         LoginPage loginPage = new LoginPage(driver);
@@ -163,7 +164,7 @@ public class AddWorkoutTest extends BaseTest {
                 .cancelUpdate();
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void updateWorkoutTest() {
         //Precondition - login and add a new workout
         LoginPage loginPage = new LoginPage(driver);
@@ -183,7 +184,7 @@ public class AddWorkoutTest extends BaseTest {
                 .updateFormData();
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void deleteWorkoutTest() {
         //Precondition - login and add a new workout
         LoginPage loginPage = new LoginPage(driver);

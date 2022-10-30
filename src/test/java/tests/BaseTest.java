@@ -5,9 +5,7 @@ import drivermanager.DriverManager;
 import drivermanager.DriverType;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 import utils.TestListenersWithAllureService;
 
 @Log4j
@@ -18,10 +16,22 @@ public class BaseTest {
     public DriverManager driverManager;
 
     @BeforeMethod
-    public void setUp() {
+    @Parameters({"browser"})
+    public void setUp(@Optional("chrome") String browser) {
         DriverFactory driverFactory = new DriverFactory();
+        DriverType type = null;
+        if (browser.equals("chrome")) {
+            type = DriverType.CHROME;
+        } else if (browser.equals("firefox")) {
+            type = DriverType.FIREFOX;
+        } else if (browser.equals("edge")) {
+            type = DriverType.EDGE;
+        } else if (browser.equals("remote")) {
+            type = DriverType.REMOTE;
+        }
+
         log.info("An object of DriverFactory was created");
-        driverManager = driverFactory.getManager(DriverType.CHROME);
+        driverManager = driverFactory.getManager(type);
         log.info("DriverFactory fetched Chrome driver type");
         driverManager.createDriver();
         log.info("A new driver instance was created");

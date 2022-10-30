@@ -5,11 +5,12 @@ import lombok.extern.log4j.Log4j;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pagesAndComponents.LoginPage;
+import utils.RetryAnalyzer;
 
 @Log4j
 public class LoginLogoutTest extends BaseTest{
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @Description("Successful login")
     public void loginTest() {
         LoginPage loginPage = new LoginPage(driver);
@@ -21,7 +22,7 @@ public class LoginLogoutTest extends BaseTest{
         Assert.assertTrue(userGreeting, " 'Welcome' box is not found.");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @Description("Successful logout")
     public void logoutTest() {
         LoginPage loginPage = new LoginPage(driver);
@@ -35,7 +36,7 @@ public class LoginLogoutTest extends BaseTest{
         Assert.assertEquals(actualMessage, expectedMessage, "Incorrect logout message or no logout message is displayed.");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @Description("Login failure - login and password input fields are left blank")
     public void loginWithoutNameAndPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);

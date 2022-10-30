@@ -5,11 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pagesAndComponents.CalendarPage;
 import pagesAndComponents.LoginPage;
+import utils.RetryAnalyzer;
 
 @Log4j
 public class CalendarTest extends BaseTest{
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void viewCalendarTest() {
         LoginPage loginPage = new LoginPage(driver);
         String currentMonthHeader = loginPage.openLoginPage()

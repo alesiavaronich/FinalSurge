@@ -11,14 +11,14 @@ public class PrepareNewWorkoutData {
         log.info("getValidData method starts generating test data to populate New Walk Workout form");
         return NewWorkoutModel
                 .builder()
-                .date("10/25/2022")
+                .date("10/30/2022")
                 .timeOfDay("07:00 AM")
                 .workoutName("My workout")
                 .workoutDescription(FakeMessageGenerator.generateWorkoutDescription())
                 .distance(FakeMessageGenerator.generateDistance())
                 .duration("00:51:16")
-                .minHr("65")
-                .maxHr("150")
+                .minHr(FakeMessageGenerator.generateMinNum())
+                .maxHr(FakeMessageGenerator.generateMaxNum())
                 .build();
     }
 }
