@@ -86,6 +86,7 @@ public class AddWorkoutPage extends BasePage{
     private WebElement errorMessageInvalidHeartRate;
 
 
+
     public AddWorkoutPage(WebDriver driver) {
         super(driver);
     }

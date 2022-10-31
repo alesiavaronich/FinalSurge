@@ -4,7 +4,57 @@
     <parameter name="browserType" value="chrome"></parameter>
     <test name="Add Workout">
         <classes>
-            <class name="tests.AddWorkoutTest"> </class>
+            <class name="tests.LoginLogoutTest"> </class>
+        </classes>
+    </test>
+    <test name="Calendar">
+        <classes>
+            <class name="tests.CalendarTest"> </class>
+        </classes>
+    </test>
+    <test name="Add Bike4s">
+        <classes>
+            <class name="tests.AddBikesTest"> </class>
+        </classes>
+    </test>
+    <test name="Add Routes">
+        <classes>
+            <class name="tests.AddRoutesTest"> </class>
+        </classes>
+    </test>
+    <test name="Add Shoes">
+        <classes>
+            <class name="tests.AddShoesTest"> </class>
+        </classes>
+    </test>
+    <test name="Customize Activity Types">
+        <classes>
+            <class name="tests.CustomizeActivityTypesTest"> </class>
+        </classes>
+    </test>
+    <test name="Edit User Profile">
+        <classes>
+            <class name="tests.EditUserProfileTest"> </class>
+        </classes>
+    </test>
+    <test name="Power Pace Zones">
+        <classes>
+            <class name="tests.HrPowerPaceZonesTest"> </class>
+        </classes>
+    </test>
+    <test name="Reports and Statistics">
+        <classes>
+            <class name="tests.ReportsAndStatisticsTest"> </class>
+        </classes>
+    </test>
+    <test name="View and Add Vitals">
+        <classes>
+            <class name="tests.ViewAndAddVitalsTest"> </class>
+        </classes>
+    </test>
+    <test name="Workout Library">
+        <classes>
+            <class name="tests.WorkoutLibraryTest"> </class>
         </classes>
     </test>
 </suite>

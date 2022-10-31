@@ -11,7 +11,7 @@ import pagesAndComponents.LoginPage;
 import utils.RetryAnalyzer;
 
 @Log4j
-public class AddShouesTest extends BaseTest{
+public class AddShoesTest extends BaseTest{
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     @Description("Access 'Shoes' page")

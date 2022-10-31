@@ -11,7 +11,7 @@
         <classes>
             <class name="tests.AddBikesTest"/>
             <class name="tests.AddRoutesTest"/>
-            <class name="tests.AddShouesTest"/>
+            <class name="tests.AddShoesTest"/>
         </classes>
     </test> <!-- Test -->
     <test name="test 3">
