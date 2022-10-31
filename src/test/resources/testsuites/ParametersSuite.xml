@@ -2,11 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Parameters Suite">
     <parameter name="browserType" value="chrome"></parameter>
-    <test name="Login">
-        <classes>
-            <class name="tests.LoginLogoutTest"> </class>
-        </classes>
-    </test>
     <test name="Add Workout">
         <classes>
             <class name="tests.AddWorkoutTest"> </class>
