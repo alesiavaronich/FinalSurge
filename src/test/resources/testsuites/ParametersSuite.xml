@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Parameters Suite">
     <parameter name="browserType" value="chrome"></parameter>
-    <test name="Add Workout">
+    <test name="Login Logout">
         <classes>
             <class name="tests.LoginLogoutTest"> </class>
         </classes>
@@ -12,7 +12,7 @@
             <class name="tests.CalendarTest"> </class>
         </classes>
     </test>
-    <test name="Add Bike4s">
+    <test name="Add Bikes">
         <classes>
             <class name="tests.AddBikesTest"> </class>
         </classes>
