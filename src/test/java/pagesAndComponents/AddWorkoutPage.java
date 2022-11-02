@@ -43,9 +43,6 @@ public class AddWorkoutPage extends BasePage{
     @FindBy(xpath = "//input[@id='Duration']")
     private WebElement durationInput;
 
-//    @FindBy(xpath = "//input[@id='hf_%s']")
-//    private WebElement howIFeltRadio;
-
     @FindBy(xpath = "//input[@id='hf_great']")
     private WebElement feltGreatRadio;
 
@@ -84,7 +81,6 @@ public class AddWorkoutPage extends BasePage{
 
     @FindBy(xpath = "//div[contains(@class,'alert alert-error') and contains(.,'Minimum Heartrate cannot be greater than 300.')]")
     private WebElement errorMessageInvalidHeartRate;
-
 
 
     public AddWorkoutPage(WebDriver driver) {
@@ -147,13 +143,6 @@ public class AddWorkoutPage extends BasePage{
         durationInput.sendKeys(dur);
         return this;
     }
-
-    // почему метод не работает? не может найти элемент после склеивания с условием
-//    public AddWorkoutPage selectHowIFeltRadio(String condition) {
-//        String finalXpath = String.format((howIFeltRadio.toString()), condition);
-//        driver.findElement(By.xpath(finalXpath)).click();
-//        return this;
-//    }
 
     public AddWorkoutPage selectHowIFeltRadio(String condition) {
         switch (condition) {
@@ -227,6 +216,4 @@ public class AddWorkoutPage extends BasePage{
         addWorkoutButton.click();
         return new WorkoutDetailsPage(driver);
     }
-
-
 }
